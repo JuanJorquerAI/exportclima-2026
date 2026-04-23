@@ -4,7 +4,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
-$to      = 'jualamos@exportclima.cl';
+$to      = 'jalamos@exportclima.cl';
 $nombre  = strip_tags(trim($_POST['nombre']   ?? ''));
 $empresa = strip_tags(trim($_POST['empresa']  ?? ''));
 $email   = filter_var(trim($_POST['email']    ?? ''), FILTER_VALIDATE_EMAIL);
