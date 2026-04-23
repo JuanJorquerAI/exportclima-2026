@@ -42,19 +42,16 @@ document.addEventListener('DOMContentLoaded', () => {
     counters.forEach(c => co.observe(c));
   }
 
-  // Smooth form submit (demo)
-  const form = document.querySelector('form.quote');
-  if (form) {
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const btn = form.querySelector('button');
-      const orig = btn.textContent;
-      btn.textContent = 'Enviando…';
-      setTimeout(() => {
-        btn.textContent = '✓ Solicitud recibida';
-        btn.style.background = '#2a7a4b';
-        setTimeout(() => { btn.textContent = orig; btn.style.background = ''; form.reset(); }, 2600);
-      }, 800);
-    });
+  // Notificación post-envío
+  const msg = document.getElementById('form-msg');
+  if (msg) {
+    const p = new URLSearchParams(window.location.search);
+    if (p.get('enviado') === '1') {
+      msg.textContent = '✓ Solicitud enviada. Le responderemos en menos de 24 horas hábiles.';
+      msg.style.cssText = 'display:block;background:#eaf4ed;color:#1a5c30;border:1px solid #b2d9be;padding:14px 18px;border-radius:2px;font-size:14px;margin-bottom:20px';
+    } else if (p.get('error') === '1') {
+      msg.textContent = 'Ocurrió un error al enviar. Por favor escríbanos a jualamos@exportclima.cl.';
+      msg.style.cssText = 'display:block;background:#fdf0f0;color:#7a1a1a;border:1px solid #e2b4b4;padding:14px 18px;border-radius:2px;font-size:14px;margin-bottom:20px';
+    }
   }
 });
